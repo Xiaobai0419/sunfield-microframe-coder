@@ -18,17 +18,15 @@ import com.sunfield.microframe.coder.utils.TableUtils;
 
 public class Generator {
 
-	/**²éÑ¯±í½á¹¹SQL**/
 	private final static String SELECT_TABLE_COLUMNS_SQL = "select column_name, data_type, character_maximum_length,"+
 															" numeric_precision, is_nullable, column_key, column_comment"+
 															" from information_schema.columns where table_name = ':tableName'";
 	
 	public static void run(){
 		try {
-			System.out.println("-----------¿ªÊ¼Éú³É-----------");
+			System.out.println("-----------ç”Ÿæˆå¼€å§‹-----------");
 			Connection conn = new Connector().getConnection();
 			
-			/**»ñÈ¡±í½á¹¹**/
 			List<TableColumns> tcList = new ArrayList<TableColumns>();
 			String columnsSql = SELECT_TABLE_COLUMNS_SQL.replace(":tableName", CodeRunner.TABLE_NAME);
 			PreparedStatement ps1;
@@ -48,57 +46,57 @@ public class Generator {
 			
 			String modelName = TableUtils.tableName2ModelName(CodeRunner.TABLE_NAME);
 			
-			/**¹¹Ôìdomain´úÂë**/
+			/**domain**/
 			try {
 				DomainGenerator.run(CodeRunner.TABLE_NAME, modelName, tcList, CodeRunner.FILE_DIR+"/"+modelName);
 			} catch (Exception e) {
-				System.out.println("-----------domain´úÂëÉú³ÉÊ§°Ü-----------");
+				System.out.println("-----------domainä»£ç ç”Ÿæˆå¤±è´¥-----------");
 				e.printStackTrace();
 			}
 			
-			/**¹¹Ôìsqlprovider´úÂë**/
+			/**sqlprovider**/
 			try {
 				ProviderGenerator.run(CodeRunner.TABLE_NAME, modelName, tcList, CodeRunner.FILE_DIR+"/"+modelName);
 			} catch (Exception e) {
-				System.out.println("-----------provider´úÂëÉú³ÉÊ§°Ü-----------");
+				System.out.println("-----------providerä»£ç ç”Ÿæˆå¤±è´¥-----------");
 				e.printStackTrace();
 			}
 			
-			/**¹¹Ôìmapper´úÂë**/
+			/**mapper**/
 			try {
 				MapperGenerator.run(CodeRunner.TABLE_NAME, modelName, CodeRunner.FILE_DIR+"/"+modelName);
 			} catch (Exception e) {
-				System.out.println("-----------mapper´úÂëÉú³ÉÊ§°Ü-----------");
+				System.out.println("-----------mapperä»£ç ç”Ÿæˆå¤±è´¥-----------");
 				e.printStackTrace();
 			}
 			
-			/**¹¹Ôìservice´úÂë**/
+			/**service**/
 			try {
 				com.sunfield.microframe.coder.generators.service4service.ServiceGenerator.run(CodeRunner.TABLE_NAME, modelName, CodeRunner.FILE_DIR+"/"+modelName);
 			} catch (Exception e) {
-				System.out.println("-----------service´úÂëÉú³ÉÊ§°Ü-----------");
+				System.out.println("-----------serviceä»£ç ç”Ÿæˆå¤±è´¥-----------");
 				e.printStackTrace();
 			}
 			
-			/**¹¹Ôìrest´úÂë**/
+			/**rest**/
 			try {
 				com.sunfield.microframe.coder.generators.rest4service.RestGenerator.run(CodeRunner.TABLE_NAME, modelName, CodeRunner.FILE_DIR+"/"+modelName);
 			} catch (Exception e) {
-				System.out.println("-----------rest´úÂëÉú³ÉÊ§°Ü-----------");
+				System.out.println("-----------restä»£ç ç”Ÿæˆå¤±è´¥-----------");
 				e.printStackTrace();
 			}
 			
-			/**¹¹Ôìfallback´úÂë**/
+			/**fallback**/
 			try {
 				FallbackGenerator.run(CodeRunner.TABLE_NAME, modelName, CodeRunner.FILE_DIR+"/"+modelName);
 			} catch (Exception e) {
-				System.out.println("-----------service:fallback´úÂëÉú³ÉÊ§°Ü-----------");
+				System.out.println("-----------fallbackä»£ç ç”Ÿæˆå¤±è´¥-----------");
 				e.printStackTrace();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println("-----------Éú³É½áÊø-----------");
+			System.out.println("-----------ç”Ÿæˆç»“æŸ-----------");
 		}
 	}
 	
