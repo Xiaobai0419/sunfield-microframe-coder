@@ -92,7 +92,8 @@ public class ${modelName}SqlProvider{
 				UPDATE("${tableName}");
 				
 				<#list attrs as a>
-				<#if (logicDelete && a.columnName == logicDeleteColumnName) || a.columnName == 'id' || a.columnName == 'create_time'>
+				<#if (logicDelete && a.columnName == logicDeleteColumnName) || a.columnName == 'id'
+					|| a.columnName == 'create_time' || a.columnName == 'create_by'>
 				<#else>
 				SET("${a.columnName} = ${r'#{'}${a.name}${r'}'}");
 				</#if>

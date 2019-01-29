@@ -17,7 +17,7 @@ public class CodeRunner {
 	public final static String TABLE_NAME = "m_users";
 	
 	/**逻辑删除列**/
-	public final static String LOGIC_DELETE_COLUMN = "del_flag";
+	public final static String LOGIC_DELETE_COLUMN = "status";
 	
 	/**逻辑删除类型枚举：{正常， 删除}**/
 	public final static String[] LOGIC_DELETE_ENUM = {"0", "1"};
