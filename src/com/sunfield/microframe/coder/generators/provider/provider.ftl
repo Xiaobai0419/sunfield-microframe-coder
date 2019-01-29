@@ -93,7 +93,7 @@ public class ${modelName}SqlProvider{
 				
 				<#list attrs as a>
 				<#if (logicDelete && a.columnName == logicDeleteColumnName) || a.columnName == 'id'
-					|| a.columnName == 'create_time' || a.columnName == 'create_by'>
+					|| a.columnName == 'create_date' || a.columnName == 'create_by'>
 				<#else>
 				SET("${a.columnName} = ${r'#{'}${a.name}${r'}'}");
 				</#if>

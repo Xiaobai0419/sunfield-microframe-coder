@@ -14,7 +14,7 @@ public class CodeRunner {
 	public final static String PASSWORD = "root";
 	
 	/**表名**/
-	public final static String TABLE_NAME = "m_users";
+	public final static String TABLE_NAME = "jm_user";
 	
 	/**逻辑删除列**/
 	public final static String LOGIC_DELETE_COLUMN = "status";
@@ -23,7 +23,7 @@ public class CodeRunner {
 	public final static String[] LOGIC_DELETE_ENUM = {"0", "1"};
 	
 	/**查询列**/
-	public final static String[] QUERY_COLUMNS = {"age"};
+	public final static String[] QUERY_COLUMNS = {};
 	
 	/**模糊查询列**/
 	public final static String[] FUZZY_QUERY_COLUMNS = {"mobile", "nick_name"};

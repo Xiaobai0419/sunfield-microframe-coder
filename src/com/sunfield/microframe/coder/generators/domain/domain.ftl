@@ -16,7 +16,7 @@ import com.sunfield.microframe.domain.base.BaseDomain;
 public class ${modelName} extends BaseDomain{
 
 	<#list attrs as a>
-	<#if a.columnName != 'status' && a.columnName != 'create_time' && a.columnName != 'update_time'
+	<#if a.columnName != 'status' && a.columnName != 'create_date' && a.columnName != 'update_date'
 		&& a.columnName != 'id' && a.columnName != 'update_by' && a.columnName != 'create_by'
         && a.columnName != 'remarks'>
 	@ApiModelProperty(value="${a.columnComment}", dataType="${a.type}")
@@ -26,7 +26,7 @@ public class ${modelName} extends BaseDomain{
 	</#list>
 	
 	<#list attrs as a>
-	<#if a.columnName != 'status' && a.columnName != 'create_time' && a.columnName != 'update_time'
+	<#if a.columnName != 'status' && a.columnName != 'create_date' && a.columnName != 'update_date'
 		&& a.columnName != 'id' && a.columnName != 'update_by' && a.columnName != 'create_by'
         && a.columnName != 'remarks'>
 	public ${a.type} get${a.name?cap_first}() {
