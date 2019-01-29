@@ -17,7 +17,8 @@ public class ${modelName} extends BaseDomain{
 
 	<#list attrs as a>
 	<#if a.columnName != 'status' && a.columnName != 'create_time' && a.columnName != 'update_time'
-		&& a.columnName != 'id' && a.columnName != 'update_by' && a.columnName != 'create_by'>
+		&& a.columnName != 'id' && a.columnName != 'update_by' && a.columnName != 'create_by'
+        && a.columnName != 'remarks'>
 	@ApiModelProperty(value="${a.columnComment}", dataType="${a.type}")
 	private ${a.type} ${a.name};
 	
@@ -26,7 +27,8 @@ public class ${modelName} extends BaseDomain{
 	
 	<#list attrs as a>
 	<#if a.columnName != 'status' && a.columnName != 'create_time' && a.columnName != 'update_time'
-		&& a.columnName != 'id' && a.columnName != 'update_by' && a.columnName != 'create_by'>
+		&& a.columnName != 'id' && a.columnName != 'update_by' && a.columnName != 'create_by'
+        && a.columnName != 'remarks'>
 	public ${a.type} get${a.name?cap_first}() {
 		return ${a.name};
 	}
