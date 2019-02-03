@@ -49,15 +49,17 @@ public class ProviderGenerator {
 		
 		List<ModelColumns> queries = new ArrayList<ModelColumns>();
 		for(ModelColumns mc : columns){
-			if(ArrayUtils.contains(CodeRunner.QUERY_COLUMNS, mc.getColumnName()))
+			if(ArrayUtils.contains(CodeRunner.QUERY_COLUMNS, mc.getColumnName())) {
 				queries.add(mc);
+			}
 		}
 		m.put("queries", queries);
 		
 		List<ModelColumns> fuzzies = new ArrayList<ModelColumns>();
 		for(ModelColumns mc : columns){
-			if(ArrayUtils.contains(CodeRunner.FUZZY_QUERY_COLUMNS, mc.getColumnName()))
+			if(ArrayUtils.contains(CodeRunner.FUZZY_QUERY_COLUMNS, mc.getColumnName())) {
 				fuzzies.add(mc);
+			}
 		}
 		m.put("fuzzies", fuzzies);
 		

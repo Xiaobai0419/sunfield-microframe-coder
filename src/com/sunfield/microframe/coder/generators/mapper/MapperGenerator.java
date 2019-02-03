@@ -44,10 +44,11 @@ public class MapperGenerator {
 		m.put("providerPackage", ProviderGenerator.PACKAGE_NAME + "." + providerName);
 		
 		/**ÉèÖÃÂß¼­É¾³ý**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN))
-			m.put("logicDelete", true);
-		else
-			m.put("logicDelete", false);
+		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
+            m.put("logicDelete", true);
+        } else {
+            m.put("logicDelete", false);
+        }
 		
 		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Mapper.java", fileDir);
 	}

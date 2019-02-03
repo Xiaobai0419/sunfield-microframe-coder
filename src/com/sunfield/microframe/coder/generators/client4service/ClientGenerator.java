@@ -36,10 +36,11 @@ public class ClientGenerator {
 		m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
 		
 		/**设置逻辑删除**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN))
+		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
 			m.put("logicDelete", true);
-		else
+		} else {
 			m.put("logicDelete", false);
+		}
 		
 //		/**写入dao工程名**/
 //		m.put("daoApplicationName", CodeRunner.DAO_APPLICATION_NAME);

@@ -52,10 +52,11 @@ public class ServiceGenerator {
 		m.put("mapperPackage", MapperGenerator.PACKAGE_NAME + "." + mapperName);
 		
 		/**ÉèÖÃÂß¼­É¾³ý**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN))
-			m.put("logicDelete", true);
-		else
-			m.put("logicDelete", false);
+		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
+            m.put("logicDelete", true);
+        } else {
+            m.put("logicDelete", false);
+        }
 		
 		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Service.java", fileDir);
 	}

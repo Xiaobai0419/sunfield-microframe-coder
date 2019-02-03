@@ -52,10 +52,11 @@ public class RestGenerator {
 		m.put("fallbackPackage", FallbackGenerator.PACKAGE_NAME + "." + fallbackName);
 		
 		/**ÉèÖÃÂß¼­É¾³ý**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN))
-			m.put("logicDelete", true);
-		else
-			m.put("logicDelete", false);
+		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
+            m.put("logicDelete", true);
+        } else {
+            m.put("logicDelete", false);
+        }
 		
 		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Rest.java", fileDir);
 	}

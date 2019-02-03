@@ -14,40 +14,41 @@ import freemarker.template.Template;
 
 public class RestGenerator {
 
-	/**restÄ£°åÎÄ¼þ**/
+	/**restÄ£ï¿½ï¿½ï¿½Ä¼ï¿½**/
 	private final static String FTL_FILE = "rest.ftl";
 	
-	/**°üÃû**/
+	/**ï¿½ï¿½ï¿½ï¿½**/
 	public final static String PACKAGE_NAME = "com.sunfield.microframe.rest";
 	
 	public static void run(String tableName, String modelName, String fileDir) throws Exception{
 		Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, RestGenerator.class);
 		
-		/**Ð´Èë´úÂëÄÚÈÝ**/
+		/**Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½**/
 		Map<String, Object> m = new HashMap<String, Object>();
 		
-		/**Ð´Èë°üÃû**/
+		/**Ð´ï¿½ï¿½ï¿½ï¿½ï¿½**/
 		m.put("packageName", PACKAGE_NAME);
 		
-		/**ÉèÖÃ±í/ÊµÌåÃû³Æ**/
+		/**ï¿½ï¿½ï¿½Ã±ï¿½/Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½**/
 		m.put("tableName", tableName);
 		m.put("modelName", modelName);
 		
-		/**Ð´ÈëServiceÃû**/
+		/**Ð´ï¿½ï¿½Serviceï¿½ï¿½**/
 		String serviceName = modelName + "Service";
 		m.put("serviceName", serviceName);
 		
-		/**Ð´Èëmodel°üÃû**/
+		/**Ð´ï¿½ï¿½modelï¿½ï¿½ï¿½ï¿½**/
 		m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
 		
-		/**Ð´Èëservice°üÃû**/
+		/**Ð´ï¿½ï¿½serviceï¿½ï¿½ï¿½ï¿½**/
 		m.put("servicePackage", ServiceGenerator.PACKAGE_NAME + "." + serviceName);
 		
-		/**ÉèÖÃÂß¼­É¾³ý**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN))
-			m.put("logicDelete", true);
-		else
-			m.put("logicDelete", false);
+		/**ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½É¾ï¿½ï¿½**/
+		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
+            m.put("logicDelete", true);
+        } else {
+            m.put("logicDelete", false);
+        }
 		
 		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Rest.java", fileDir);
 	}

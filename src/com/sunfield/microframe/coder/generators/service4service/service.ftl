@@ -44,19 +44,21 @@ public class ${modelName}Service implements ITxTransaction{
 	@Transactional
 	public ${modelName} insert(${modelName} obj){
 		obj.preInsert();
-		if(mapper.insert(obj) > 0)
+		if(mapper.insert(obj) > 0) {
 			return obj;
-		else
+		} else {
 			return null;
+		}
 	}
 	
 	@Transactional
 	public ${modelName} update(${modelName} obj){
 		obj.preUpdate();
-		if(mapper.update(obj) > 0)
+		if(mapper.update(obj) > 0) {
 			return obj;
-		else
+		} else {
 			return null;
+		}
 	}
 	
 	<#if logicDelete>

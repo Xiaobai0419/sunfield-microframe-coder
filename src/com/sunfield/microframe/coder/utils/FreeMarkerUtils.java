@@ -48,8 +48,9 @@ public class FreeMarkerUtils {
 	public static File generateCodeFile(Template temp, Map<String, Object> m, String fileName, String fileDir) 
 			throws TemplateException, IOException{
 		File dir = new File(fileDir);
-		if(!dir.exists())
-			dir.mkdirs();
+		if(!dir.exists()) {
+            dir.mkdirs();
+        }
 		
 		File f = new File(dir, fileName);
         Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "UTF-8"));

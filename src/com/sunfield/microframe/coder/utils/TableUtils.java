@@ -126,12 +126,14 @@ public class TableUtils {
 	 * @return
 	 */
 	public static String getLength(TableColumns tc){
-		if(tc.getCharMaxLength() != null)
-			return tc.getCharMaxLength().toString();
-		if(tc.getNumPrecision() != null)
-			return tc.getNumPrecision().toString();
-		else
-			return "16";
+		if(tc.getCharMaxLength() != null) {
+            return tc.getCharMaxLength().toString();
+        }
+		if(tc.getNumPrecision() != null) {
+            return tc.getNumPrecision().toString();
+        } else {
+            return "16";
+        }
 	}
 	
 	/**
@@ -141,8 +143,9 @@ public class TableUtils {
 	 */
 	public static boolean hasPriKey(List<TableColumns> l){
 		for(TableColumns tc : l){
-			if("pri".equalsIgnoreCase(tc.getColumnKey()))
-				return true;
+			if("pri".equalsIgnoreCase(tc.getColumnKey())) {
+                return true;
+            }
 		}
 		return false;
 	}
@@ -157,8 +160,9 @@ public class TableUtils {
 	 */
 	public static boolean hasTime(List<TableColumns> l){
 		for(TableColumns tc : l){
-			if(ArrayUtils.contains(DATE_TYPE_ARRAY, tc.getDataType()))
-				return true;
+			if(ArrayUtils.contains(DATE_TYPE_ARRAY, tc.getDataType())) {
+                return true;
+            }
 		}
 		return false;
 	}

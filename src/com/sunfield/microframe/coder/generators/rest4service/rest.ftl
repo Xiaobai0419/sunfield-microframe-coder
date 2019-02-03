@@ -38,10 +38,11 @@ public class ${modelName}Rest extends ${fallbackName}{
 	@HystrixCommand(fallbackMethod = "findListFallback")
     public ResponseBean<List<${modelName}>> findList(@RequestBody ${modelName} obj) {
 		List<${modelName}> list = service.findList(obj);
-		if(!list.isEmpty())
+		if(!list.isEmpty()) {
 			return new ResponseBean<List<${modelName}>>(ResponseStatus.SUCCESS, list);
-		else
+		} else {
 			return new ResponseBean<List<${modelName}>>(ResponseStatus.NO_DATA);
+		}
     }
 	
 	@ApiOperation(value="分页查询")
@@ -57,14 +58,15 @@ public class ${modelName}Rest extends ${fallbackName}{
 	@RequestMapping(value = "/findOne", method = RequestMethod.POST)
 	@HystrixCommand(fallbackMethod = "findOneFallback")
     public ResponseBean<${modelName}> findOne(@RequestBody ${modelName} obj) {
-    	if(StringUtils.isBlank(obj.getId()))
+    	if(StringUtils.isBlank(obj.getId())) {
 			return new ResponseBean<${modelName}>(ResponseStatus.PARAMS_ERROR);
-    
-    	${modelName} obj_ = service.findOne(obj.getId());
-    	if(obj_ != null)
-    		return new ResponseBean<${modelName}>(ResponseStatus.SUCCESS, obj_);
-    	else
+    	}
+    	${modelName} object = service.findOne(obj.getId());
+    	if(object != null) {
+    		return new ResponseBean<${modelName}>(ResponseStatus.SUCCESS, object);
+    	} else {
     		return new ResponseBean<${modelName}>(ResponseStatus.NO_DATA);
+		}
     }
 	
 	@ApiOperation(value="新增")
@@ -72,11 +74,12 @@ public class ${modelName}Rest extends ${fallbackName}{
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@HystrixCommand(fallbackMethod = "insertFallback")
     public ResponseBean<${modelName}> insert(@RequestBody ${modelName} obj) {
-		${modelName} obj_ = service.insert(obj);
-		if(obj_ != null)
-			return new ResponseBean<${modelName}>(ResponseStatus.SUCCESS, obj_);
-		else
+		${modelName} object = service.insert(obj);
+		if(object != null) {
+			return new ResponseBean<${modelName}>(ResponseStatus.SUCCESS, object);
+		} else {
 			return new ResponseBean<${modelName}>(ResponseStatus.FAIL);
+		}
     }
 	
 	@ApiOperation(value="更新")
@@ -84,14 +87,15 @@ public class ${modelName}Rest extends ${fallbackName}{
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@HystrixCommand(fallbackMethod = "updateFallback")
     public ResponseBean<${modelName}> update(@RequestBody ${modelName} obj) {
-    	if(StringUtils.isBlank(obj.getId()))
+    	if(StringUtils.isBlank(obj.getId())) {
 			return new ResponseBean<${modelName}>(ResponseStatus.PARAMS_ERROR);
-    
-    	${modelName} obj_ = service.update(obj);
-    	if(obj_ != null)
-			return new ResponseBean<${modelName}>(ResponseStatus.SUCCESS, obj_);
-		else
+    	}
+    	${modelName} object = service.update(obj);
+    	if(object != null) {
+			return new ResponseBean<${modelName}>(ResponseStatus.SUCCESS, object);
+		} else {
 			return new ResponseBean<${modelName}>(ResponseStatus.FAIL);
+		}
     }
 	
 	@ApiOperation(value="删除")
@@ -99,13 +103,14 @@ public class ${modelName}Rest extends ${fallbackName}{
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@HystrixCommand(fallbackMethod = "deleteFallback")
     public ResponseBean<${modelName}> delete(@RequestBody ${modelName} obj) {
-    	if(StringUtils.isBlank(obj.getId()))
+    	if(StringUtils.isBlank(obj.getId())) {
 			return new ResponseBean<${modelName}>(ResponseStatus.PARAMS_ERROR);
-    
-    	if(service.delete(obj.getId()) > 0)
+    	}
+    	if(service.delete(obj.getId()) > 0) {
     		return new ResponseBean<${modelName}>();
-    	else
+    	} else {
     		return new ResponseBean<${modelName}>(ResponseStatus.NO_DATA);
+		}
     }
     
 }
