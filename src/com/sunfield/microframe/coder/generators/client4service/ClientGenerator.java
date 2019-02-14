@@ -13,38 +13,39 @@ import freemarker.template.Template;
 
 public class ClientGenerator {
 
-	/**clientÄ£°åÎÄ¼ş**/
-	private final static String FTL_FILE = "client.ftl";
-	
-	/**°üÃû**/
-	public final static String PACKAGE_NAME = "com.sunfield.microframe.client";
-	
-	public static void run(String tableName, String modelName, String fileDir) throws Exception{
-		Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, ClientGenerator.class);
-		
-		/**Ğ´Èë´úÂëÄÚÈİ**/
-		Map<String, Object> m = new HashMap<String, Object>();
-		
-		/**Ğ´Èë°üÃû**/
-		m.put("packageName", PACKAGE_NAME);
-		
-		/**ÉèÖÃ±í/ÊµÌåÃû³Æ**/
-		m.put("tableName", tableName);
-		m.put("modelName", modelName);
-		
-		/**Ğ´Èëmodel°üÃû**/
-		m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
-		
-		/**ÉèÖÃÂß¼­É¾³ı**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
-			m.put("logicDelete", true);
-		} else {
-			m.put("logicDelete", false);
-		}
-		
-//		/**Ğ´Èëdao¹¤³ÌÃû**/
+    /**clientæ¨¡æ¿æ–‡ä»¶**/
+    private final static String FTL_FILE = "client.ftl";
+
+    /**åŒ…å**/
+    public final static String PACKAGE_NAME = "com.sunfield.microframe.client";
+
+    public static void run(String tableName, String modelName, String fileDir) throws Exception{
+        Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, ClientGenerator.class);
+
+        /**å†™å…¥ä»£ç å†…å®¹**/
+        Map<String, Object> m = new HashMap<String, Object>();
+
+        /**å†™å…¥åŒ…å**/
+        m.put("packageName", PACKAGE_NAME);
+
+        /**è®¾ç½®è¡¨/å®ä½“åç§°**/
+        m.put("tableName", tableName);
+        m.put("modelName", modelName);
+
+        /**å†™å…¥modelåŒ…å**/
+        m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
+
+        /**è®¾ç½®é€»è¾‘åˆ é™¤**/
+        if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
+            m.put("logicDelete", true);
+        } else {
+            m.put("logicDelete", false);
+        }
+
+//		/**å†™å…¥daoå·¥ç¨‹å**/
 //		m.put("daoApplicationName", CodeRunner.DAO_APPLICATION_NAME);
-		
-		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Client.java", fileDir);
-	}
+
+        FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Client.java", fileDir);
+    }
 }
+

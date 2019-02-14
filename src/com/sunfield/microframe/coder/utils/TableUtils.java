@@ -10,160 +10,160 @@ import com.sunfield.microframe.coder.model.ModelColumns;
 import com.sunfield.microframe.coder.model.TableColumns;
 
 public class TableUtils {
-	
-	/**
-	 * ½«±íÃû×ª»»ÎªÊµÌåÃû
-	 * @param tableName ±íÃû
-	 * @return
-	 */
-	public static String tableName2ModelName(String tableName){
-		StringBuilder n = new StringBuilder();
-		if(StringUtils.isNotBlank(tableName)){
-			int l = tableName.length();
-			boolean upperNext = false;
-			for(int i=0;i<l;i++){
-				char c = tableName.charAt(i);
-				if(i == 0 && Character.isLetter(c)){
-					n.append(Character.toUpperCase(c));
-					continue;
-				}
-				
-				if(!Character.isLetter(c)){
-					upperNext = true;
-				}else{
-					if(upperNext && Character.isLowerCase(c)){
-						n.append(Character.toUpperCase(c));
-						upperNext = false;
-					}else{
-						n.append(c);
-					}
-				}
-			}
-		}
-		return n.toString();
-	}
-	
-	/**
-	 * ½«±í½á¹¹×ª»»ÎªÊµÌå½á¹¹
-	 * @param l ±í½á¹¹
-	 * @return
-	 */
-	public static List<ModelColumns> table2Model(List<TableColumns> l){
-		List<ModelColumns> modelColumns = new ArrayList<ModelColumns>();
-		ModelColumns mc = null;
-		for(TableColumns tc : l){
-			mc = new ModelColumns();
-			mc.setType(dataType2FieldType(tc.getDataType()));
-			mc.setName(columnName2FieldName(tc.getColumnName()));
-			mc.setColumnComment(tc.getColumnComment());
-			mc.setLength(getLength(tc));
-			mc.setNullable("yes".equalsIgnoreCase(tc.getIsNullable()) ? "true" : "false");
-			mc.setPrikey("pri".equalsIgnoreCase(tc.getColumnKey()));
-			mc.setColumnName(tc.getColumnName());
-			modelColumns.add(mc);
-		}
-		
-		return modelColumns;
-	}
-	
-	/**
-	 * ½«×Ö¶ÎÃû×ª»»ÎªÊôĞÔÃû
-	 * @param columnName ×Ö¶ÎÃû
-	 * @return
-	 */
-	public static String columnName2FieldName(String columnName){
-		StringBuilder n = new StringBuilder();
-		if(StringUtils.isNotBlank(columnName)){
-			int l = columnName.length();
-			boolean upperNext = false;
-			for(int i=0;i<l;i++){
-				char c = columnName.charAt(i);
-				if(!Character.isLetter(c)){
-					upperNext = true;
-				}else{
-					if(upperNext && Character.isLowerCase(c)){
-						n.append(Character.toUpperCase(c));
-						upperNext = false;
-					}else{
-						n.append(c);
-					}
-				}
-			}
-		}
-		return n.toString();
-	}
-	
-	/**
-	 * ½«×Ö¶ÎÀàĞÍ×ª»»ÎªÊôĞÔÀàĞÍ
-	 * @param dataType ×Ö¶ÎÀàĞÍ
-	 * @return
-	 */
-	public static String dataType2FieldType(String dataType){
-		switch(dataType){
-			case "varchar": return "String";
-			case "char": return "String";
-			case "int": return "Integer";
-			case "integer": return "Integer";
-			case "bigint": return "Long";
-			case "smallint": return "Short";
-			case "tinyint": return "Byte";
-			case "float": return "Float";
-			case "double": return "Double";
-			case "numberic": return "BigDecimal";
-			case "bit": return "Boolean";
-			case "timestamp": return "Date";
-			case "date": return "Date";
-			case "time": return "Date";
-			case "datetime": return "Date";
-			case "text": return "String";
-			default: return "String";
-		}
-	}
-	
-	/**
-	 * »ñÈ¡×Ö¶Î³¤¶È
-	 * @param tc ×Ö¶ÎÃèÊö
-	 * @return
-	 */
-	public static String getLength(TableColumns tc){
-		if(tc.getCharMaxLength() != null) {
+
+    /**
+     * å°†è¡¨åè½¬æ¢ä¸ºå®ä½“å
+     * @param tableName è¡¨å
+     * @return
+     */
+    public static String tableName2ModelName(String tableName){
+        StringBuilder n = new StringBuilder();
+        if(StringUtils.isNotBlank(tableName)){
+            int l = tableName.length();
+            boolean upperNext = false;
+            for(int i=0;i<l;i++){
+                char c = tableName.charAt(i);
+                if(i == 0 && Character.isLetter(c)){
+                    n.append(Character.toUpperCase(c));
+                    continue;
+                }
+
+                if(!Character.isLetter(c)){
+                    upperNext = true;
+                }else{
+                    if(upperNext && Character.isLowerCase(c)){
+                        n.append(Character.toUpperCase(c));
+                        upperNext = false;
+                    }else{
+                        n.append(c);
+                    }
+                }
+            }
+        }
+        return n.toString();
+    }
+
+    /**
+     * å°†è¡¨ç»“æ„è½¬æ¢ä¸ºå®ä½“ç»“æ„
+     * @param l è¡¨ç»“æ„
+     * @return
+     */
+    public static List<ModelColumns> table2Model(List<TableColumns> l){
+        List<ModelColumns> modelColumns = new ArrayList<ModelColumns>();
+        ModelColumns mc = null;
+        for(TableColumns tc : l){
+            mc = new ModelColumns();
+            mc.setType(dataType2FieldType(tc.getDataType()));
+            mc.setName(columnName2FieldName(tc.getColumnName()));
+            mc.setColumnComment(tc.getColumnComment());
+            mc.setLength(getLength(tc));
+            mc.setNullable("yes".equalsIgnoreCase(tc.getIsNullable()) ? "true" : "false");
+            mc.setPrikey("pri".equalsIgnoreCase(tc.getColumnKey()));
+            mc.setColumnName(tc.getColumnName());
+            modelColumns.add(mc);
+        }
+
+        return modelColumns;
+    }
+
+    /**
+     * å°†å­—æ®µåè½¬æ¢ä¸ºå±æ€§å
+     * @param columnName å­—æ®µå
+     * @return
+     */
+    public static String columnName2FieldName(String columnName){
+        StringBuilder n = new StringBuilder();
+        if(StringUtils.isNotBlank(columnName)){
+            int l = columnName.length();
+            boolean upperNext = false;
+            for(int i=0;i<l;i++){
+                char c = columnName.charAt(i);
+                if(!Character.isLetter(c)){
+                    upperNext = true;
+                }else{
+                    if(upperNext && Character.isLowerCase(c)){
+                        n.append(Character.toUpperCase(c));
+                        upperNext = false;
+                    }else{
+                        n.append(c);
+                    }
+                }
+            }
+        }
+        return n.toString();
+    }
+
+    /**
+     * å°†å­—æ®µç±»å‹è½¬æ¢ä¸ºå±æ€§ç±»å‹
+     * @param dataType å­—æ®µç±»å‹
+     * @return
+     */
+    public static String dataType2FieldType(String dataType){
+        switch(dataType){
+            case "varchar": return "String";
+            case "char": return "String";
+            case "int": return "Integer";
+            case "integer": return "Integer";
+            case "bigint": return "Long";
+            case "smallint": return "Short";
+            case "tinyint": return "Byte";
+            case "float": return "Float";
+            case "double": return "Double";
+            case "numberic": return "BigDecimal";
+            case "bit": return "Boolean";
+            case "timestamp": return "Date";
+            case "date": return "Date";
+            case "time": return "Date";
+            case "datetime": return "Date";
+            case "text": return "String";
+            default: return "String";
+        }
+    }
+
+    /**
+     * è·å–å­—æ®µé•¿åº¦
+     * @param tc å­—æ®µæè¿°
+     * @return
+     */
+    public static String getLength(TableColumns tc){
+        if(tc.getCharMaxLength() != null) {
             return tc.getCharMaxLength().toString();
         }
-		if(tc.getNumPrecision() != null) {
+        if(tc.getNumPrecision() != null) {
             return tc.getNumPrecision().toString();
         } else {
             return "16";
         }
-	}
-	
-	/**
-	 * ²éÑ¯±í/ÊÓÍ¼ÖĞÊÇ·ñÓĞÖ÷¼ü
-	 * @param l ±í½á¹¹
-	 * @return
-	 */
-	public static boolean hasPriKey(List<TableColumns> l){
-		for(TableColumns tc : l){
-			if("pri".equalsIgnoreCase(tc.getColumnKey())) {
+    }
+
+    /**
+     * æŸ¥è¯¢è¡¨/è§†å›¾ä¸­æ˜¯å¦æœ‰ä¸»é”®
+     * @param l è¡¨ç»“æ„
+     * @return
+     */
+    public static boolean hasPriKey(List<TableColumns> l){
+        for(TableColumns tc : l){
+            if("pri".equalsIgnoreCase(tc.getColumnKey())) {
                 return true;
             }
-		}
-		return false;
-	}
-	
-	/**Ê±¼äÀàĞÍ¼¯ºÏ**/
-	public final static String[] DATE_TYPE_ARRAY = {"date", "time", "year", "timestamp", "datetime"};
-	
-	/**
-	 * ²éÑ¯±í/ÊÓÍ¼ÖĞÊÇ·ñÓĞÊ±¼ä
-	 * @param l ±í½á¹¹
-	 * @return
-	 */
-	public static boolean hasTime(List<TableColumns> l){
-		for(TableColumns tc : l){
-			if(ArrayUtils.contains(DATE_TYPE_ARRAY, tc.getDataType())) {
+        }
+        return false;
+    }
+
+    /**æ—¶é—´ç±»å‹é›†åˆ**/
+    public final static String[] DATE_TYPE_ARRAY = {"date", "time", "year", "timestamp", "datetime"};
+
+    /**
+     * æŸ¥è¯¢è¡¨/è§†å›¾ä¸­æ˜¯å¦æœ‰æ—¶é—´
+     * @param l è¡¨ç»“æ„
+     * @return
+     */
+    public static boolean hasTime(List<TableColumns> l){
+        for(TableColumns tc : l){
+            if(ArrayUtils.contains(DATE_TYPE_ARRAY, tc.getDataType())) {
                 return true;
             }
-		}
-		return false;
-	}
+        }
+        return false;
+    }
 }

@@ -13,39 +13,39 @@ import freemarker.template.Template;
 
 public class FallbackGenerator {
 
-	/**fallbackÄ£°åÎÄ¼ş**/
-	private final static String FTL_FILE = "fallback.ftl";
-	
-	/**°üÃû**/
-	public final static String PACKAGE_NAME = "com.sunfield.microframe.fallback";
-	
-	public static void run(String tableName, String modelName, String fileDir) throws Exception{
-		Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, FallbackGenerator.class);
-		
-		/**Ğ´Èë´úÂëÄÚÈİ**/
-		Map<String, Object> m = new HashMap<String, Object>();
-		
-		/**Ğ´Èë°üÃû**/
-		m.put("packageName", PACKAGE_NAME);
-		
-		/**ÉèÖÃ±í/ÊµÌåÃû³Æ**/
-		m.put("tableName", tableName);
-		m.put("modelName", modelName);
-		
-		/**Ğ´ÈëServiceÃû**/
-		String serviceName = modelName + "Service";
-		m.put("serviceName", serviceName);
-		
-		/**Ğ´Èëmodel°üÃû**/
-		m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
-		
-		/**ÉèÖÃÂß¼­É¾³ı**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
+    /**fallbackæ¨¡æ¿æ–‡ä»¶**/
+    private final static String FTL_FILE = "fallback.ftl";
+
+    /**åŒ…å**/
+    public final static String PACKAGE_NAME = "com.sunfield.microframe.fallback";
+
+    public static void run(String tableName, String modelName, String fileDir) throws Exception{
+        Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, FallbackGenerator.class);
+
+        /**å†™å…¥ä»£ç å†…å®¹**/
+        Map<String, Object> m = new HashMap<String, Object>();
+
+        /**å†™å…¥åŒ…å**/
+        m.put("packageName", PACKAGE_NAME);
+
+        /**è®¾ç½®è¡¨/å®ä½“åç§°**/
+        m.put("tableName", tableName);
+        m.put("modelName", modelName);
+
+        /**å†™å…¥Serviceå**/
+        String serviceName = modelName + "Service";
+        m.put("serviceName", serviceName);
+
+        /**å†™å…¥modelåŒ…å**/
+        m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
+
+        /**è®¾ç½®é€»è¾‘åˆ é™¤**/
+        if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
             m.put("logicDelete", true);
         } else {
             m.put("logicDelete", false);
         }
-		
-		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Fallback.java", fileDir);
-	}
+
+        FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Fallback.java", fileDir);
+    }
 }

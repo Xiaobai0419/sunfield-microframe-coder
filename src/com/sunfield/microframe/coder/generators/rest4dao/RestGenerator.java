@@ -14,36 +14,36 @@ import freemarker.template.Template;
 
 public class RestGenerator {
 
-	/**restģ���ļ�**/
+	/**provider模板文件**/
 	private final static String FTL_FILE = "rest.ftl";
-	
-	/**����**/
+
+	/**包名**/
 	public final static String PACKAGE_NAME = "com.sunfield.microframe.rest";
 	
 	public static void run(String tableName, String modelName, String fileDir) throws Exception{
 		Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, RestGenerator.class);
-		
-		/**д���������**/
+
+		/**写入代码内容**/
 		Map<String, Object> m = new HashMap<String, Object>();
-		
-		/**д�����**/
+
+		/**写入包名**/
 		m.put("packageName", PACKAGE_NAME);
-		
-		/**���ñ�/ʵ������**/
+
+		/**设置表/实体名称**/
 		m.put("tableName", tableName);
 		m.put("modelName", modelName);
-		
-		/**д��Service��**/
+
+		/**写入Service名**/
 		String serviceName = modelName + "Service";
 		m.put("serviceName", serviceName);
-		
-		/**д��model����**/
+
+		/**写入model包名**/
 		m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
-		
-		/**д��service����**/
+
+		/**写入service包名**/
 		m.put("servicePackage", ServiceGenerator.PACKAGE_NAME + "." + serviceName);
-		
-		/**�����߼�ɾ��**/
+
+		/**设置逻辑删除**/
 		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
             m.put("logicDelete", true);
         } else {

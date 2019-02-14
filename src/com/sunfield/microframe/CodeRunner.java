@@ -14,7 +14,7 @@ public class CodeRunner {
 	public final static String PASSWORD = "123456";
 	
 	/**表名**/
-	public final static String TABLE_NAME = "jm_industries";
+	public final static String TABLE_NAME = "jm_wisdom_webcast";
 	
 	/**逻辑删除列**/
 	public final static String LOGIC_DELETE_COLUMN = "status";

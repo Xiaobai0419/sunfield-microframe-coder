@@ -15,49 +15,49 @@ import freemarker.template.Template;
 
 public class RestGenerator {
 
-	/**restÄ£°åÎÄ¼ş**/
-	private final static String FTL_FILE = "rest.ftl";
-	
-	/**°üÃû**/
-	public final static String PACKAGE_NAME = "com.sunfield.microframe.rest";
-	
-	public static void run(String tableName, String modelName, String fileDir) throws Exception{
-		Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, RestGenerator.class);
-		
-		/**Ğ´Èë´úÂëÄÚÈİ**/
-		Map<String, Object> m = new HashMap<String, Object>();
-		
-		/**Ğ´Èë°üÃû**/
-		m.put("packageName", PACKAGE_NAME);
-		
-		/**ÉèÖÃ±í/ÊµÌåÃû³Æ**/
-		m.put("tableName", tableName);
-		m.put("modelName", modelName);
-		
-		/**Ğ´ÈëServiceÃû**/
-		String serviceName = modelName + "Service";
-		m.put("serviceName", serviceName);
-		
-		/**Ğ´ÈëfallbackÃû**/
-		String fallbackName = modelName + "Fallback";
-		m.put("fallbackName", fallbackName);
-		
-		/**Ğ´Èëmodel°üÃû**/
-		m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
-		
-		/**Ğ´Èëservice°üÃû**/
-		m.put("servicePackage", ServiceGenerator.PACKAGE_NAME + "." + serviceName);
-		
-		/**Ğ´Èëfallback°üÃû**/
-		m.put("fallbackPackage", FallbackGenerator.PACKAGE_NAME + "." + fallbackName);
-		
-		/**ÉèÖÃÂß¼­É¾³ı**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
+    /**restæ¨¡æ¿æ–‡ä»¶**/
+    private final static String FTL_FILE = "rest.ftl";
+
+    /**åŒ…å**/
+    public final static String PACKAGE_NAME = "com.sunfield.microframe.rest";
+
+    public static void run(String tableName, String modelName, String fileDir) throws Exception{
+        Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, RestGenerator.class);
+
+        /**å†™å…¥ä»£ç å†…å®¹**/
+        Map<String, Object> m = new HashMap<String, Object>();
+
+        /**å†™å…¥åŒ…å**/
+        m.put("packageName", PACKAGE_NAME);
+
+        /**è®¾ç½®è¡¨/å®ä½“åç§°**/
+        m.put("tableName", tableName);
+        m.put("modelName", modelName);
+
+        /**å†™å…¥Serviceå**/
+        String serviceName = modelName + "Service";
+        m.put("serviceName", serviceName);
+
+        /**å†™å…¥fallbackå**/
+        String fallbackName = modelName + "Fallback";
+        m.put("fallbackName", fallbackName);
+
+        /**å†™å…¥modelåŒ…å**/
+        m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
+
+        /**å†™å…¥serviceåŒ…å**/
+        m.put("servicePackage", ServiceGenerator.PACKAGE_NAME + "." + serviceName);
+
+        /**å†™å…¥fallbackåŒ…å**/
+        m.put("fallbackPackage", FallbackGenerator.PACKAGE_NAME + "." + fallbackName);
+
+        /**è®¾ç½®é€»è¾‘åˆ é™¤**/
+        if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
             m.put("logicDelete", true);
         } else {
             m.put("logicDelete", false);
         }
-		
-		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Rest.java", fileDir);
-	}
+
+        FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Rest.java", fileDir);
+    }
 }

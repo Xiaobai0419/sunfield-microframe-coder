@@ -7,26 +7,26 @@ import java.sql.SQLException;
 import com.sunfield.microframe.CodeRunner;
 
 /**
- * ªÒ»° ˝æ›ø‚¡¨Ω”
+ * Ëé∑ÂèñÊï∞ÊçÆÂ∫ìËøûÊé•
  * @author wangn
  *
  */
 public class Connector {
 
-	/**«˝∂Ø√˚≥∆**/
-	private final static String DRIVER_NAME = "com.mysql.jdbc.Driver";
-	
-	public Connection getConnection(){
-		Connection conn = null;
-		try {
-			Class.forName(DRIVER_NAME);
-			conn = DriverManager.getConnection(CodeRunner.DATA_BASE_URL, CodeRunner.USER_NAME, CodeRunner.PASSWORD);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return conn;
-	}
-	
+    /**È©±Âä®ÂêçÁß∞**/
+    private final static String DRIVER_NAME = "com.mysql.jdbc.Driver";
+
+    public Connection getConnection(){
+        Connection conn = null;
+        try {
+            Class.forName(DRIVER_NAME);
+            conn = DriverManager.getConnection(CodeRunner.DATA_BASE_URL, CodeRunner.USER_NAME, CodeRunner.PASSWORD);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
 }

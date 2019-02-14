@@ -11,13 +11,13 @@ public class ModelColumns implements Serializable{
 
 	private static final long serialVersionUID = 1233392741723633683L;
 
-	/**属�?�类�?**/
+	/**属性类型**/
 	private String type;
 	
-	/**属�?�名**/
+	/**属性名**/
 	private String name;
 	
-	/**属�?�注�?**/
+	/**属性注释**/
 	private String columnComment;
 	
 	/**字段长度**/
@@ -26,10 +26,10 @@ public class ModelColumns implements Serializable{
 	/**字段长度**/
 	private String nullable;
 	
-	/**是否为主�?**/
+	/**是否为主键**/
 	private boolean prikey;
 	
-	/**映射数据库字段名�?**/
+	/**映射数据库字段名称**/
 	private String columnName;
 
 	public String getType() {

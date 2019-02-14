@@ -3,7 +3,7 @@ package com.sunfield.microframe.coder.model;
 import java.io.Serializable;
 
 /**
- * 表结�?
+ * 表结构
  * @author wangnan
  *
  */
@@ -26,7 +26,7 @@ public class TableColumns implements Serializable{
 	/**是否可空**/
 	private String isNullable;
 	
-	/**键类�?**/
+	/**键类型**/
 	private String columnKey;
 	
 	/**字段注释**/

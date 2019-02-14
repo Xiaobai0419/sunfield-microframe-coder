@@ -19,66 +19,66 @@ import freemarker.template.Template;
 
 public class ProviderGenerator {
 
-	/**providerÄ£°åÎÄ¼ş**/
-	private final static String FTL_FILE = "provider.ftl";
-	
-	/**°üÃû**/
-	public final static String PACKAGE_NAME = "com.sunfield.microframe.provider";
-	
-	public static void run(String tableName, String modelName, List<TableColumns> list, String fileDir) throws Exception{
-		Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, ProviderGenerator.class);
-		
-		/**Ğ´Èë´úÂëÄÚÈİ**/
-		Map<String, Object> m = new HashMap<String, Object>();
-		
-		/**Ğ´Èë°üÃû**/
-		m.put("packageName", PACKAGE_NAME);
-		
-		/**Ğ´Èëmodel°üÃû**/
-		m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
-		
-		/**ÉèÖÃ±í/ÊµÌåÃû³Æ**/
-		m.put("tableName", tableName);
-		m.put("modelName", modelName);
-		
-		/**ÉèÖÃÊµÌåÄÚÈİ**/
-		m.put("attrs", TableUtils.table2Model(list));
-		
-		/**ÉèÖÃ²éÑ¯ÁĞ**/
-		List<ModelColumns> columns = TableUtils.table2Model(list);
-		
-		List<ModelColumns> queries = new ArrayList<ModelColumns>();
-		for(ModelColumns mc : columns){
-			if(ArrayUtils.contains(CodeRunner.QUERY_COLUMNS, mc.getColumnName())) {
-				queries.add(mc);
-			}
-		}
-		m.put("queries", queries);
-		
-		List<ModelColumns> fuzzies = new ArrayList<ModelColumns>();
-		for(ModelColumns mc : columns){
-			if(ArrayUtils.contains(CodeRunner.FUZZY_QUERY_COLUMNS, mc.getColumnName())) {
-				fuzzies.add(mc);
-			}
-		}
-		m.put("fuzzies", fuzzies);
-		
-		/**ÉèÖÃÂß¼­É¾³ı**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)){
-			m.put("logicDelete", true);
-			m.put("logicDeleteColumnName", CodeRunner.LOGIC_DELETE_COLUMN);
-			if(ArrayUtils.isNotEmpty(CodeRunner.LOGIC_DELETE_ENUM)){
-				m.put("logicNormalValue", CodeRunner.LOGIC_DELETE_ENUM[0]);
-				m.put("logicDeleteValue", CodeRunner.LOGIC_DELETE_ENUM[1]);
-			}
-			else{
-				m.put("logicNormalValue", "0");
-				m.put("logicDeleteValue", "1");
-			}
-		}else{
-			m.put("logicDelete", false);
-		}
-		
-		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "SqlProvider.java", fileDir);
-	}
+    /**provideræ¨¡æ¿æ–‡ä»¶**/
+    private final static String FTL_FILE = "provider.ftl";
+
+    /**åŒ…å**/
+    public final static String PACKAGE_NAME = "com.sunfield.microframe.provider";
+
+    public static void run(String tableName, String modelName, List<TableColumns> list, String fileDir) throws Exception{
+        Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, ProviderGenerator.class);
+
+        /**å†™å…¥ä»£ç å†…å®¹**/
+        Map<String, Object> m = new HashMap<String, Object>();
+
+        /**å†™å…¥åŒ…å**/
+        m.put("packageName", PACKAGE_NAME);
+
+        /**å†™å…¥modelåŒ…å**/
+        m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
+
+        /**è®¾ç½®è¡¨/å®ä½“åç§°**/
+        m.put("tableName", tableName);
+        m.put("modelName", modelName);
+
+        /**è®¾ç½®å®ä½“å†…å®¹**/
+        m.put("attrs", TableUtils.table2Model(list));
+
+        /**è®¾ç½®æŸ¥è¯¢åˆ—**/
+        List<ModelColumns> columns = TableUtils.table2Model(list);
+
+        List<ModelColumns> queries = new ArrayList<ModelColumns>();
+        for(ModelColumns mc : columns){
+            if(ArrayUtils.contains(CodeRunner.QUERY_COLUMNS, mc.getColumnName())) {
+                queries.add(mc);
+            }
+        }
+        m.put("queries", queries);
+
+        List<ModelColumns> fuzzies = new ArrayList<ModelColumns>();
+        for(ModelColumns mc : columns){
+            if(ArrayUtils.contains(CodeRunner.FUZZY_QUERY_COLUMNS, mc.getColumnName())) {
+                fuzzies.add(mc);
+            }
+        }
+        m.put("fuzzies", fuzzies);
+
+        /**è®¾ç½®é€»è¾‘åˆ é™¤**/
+        if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)){
+            m.put("logicDelete", true);
+            m.put("logicDeleteColumnName", CodeRunner.LOGIC_DELETE_COLUMN);
+            if(ArrayUtils.isNotEmpty(CodeRunner.LOGIC_DELETE_ENUM)){
+                m.put("logicNormalValue", CodeRunner.LOGIC_DELETE_ENUM[0]);
+                m.put("logicDeleteValue", CodeRunner.LOGIC_DELETE_ENUM[1]);
+            }
+            else{
+                m.put("logicNormalValue", "0");
+                m.put("logicDeleteValue", "1");
+            }
+        }else{
+            m.put("logicDelete", false);
+        }
+
+        FreeMarkerUtils.generateCodeFile(temp, m, modelName + "SqlProvider.java", fileDir);
+    }
 }

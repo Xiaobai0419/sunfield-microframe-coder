@@ -18,45 +18,45 @@ import freemarker.template.TemplateNotFoundException;
 
 public class FreeMarkerUtils {
 
-	/**
-	 * ¹¹ÔìfreemarkerÄ£°å¶ÔÏó
-	 * @param ftlLocation Ä£°åÎÄ¼şÂ·¾¶
-	 * @return
-	 * @throws IOException 
-	 * @throws ParseException 
-	 * @throws MalformedTemplateNameException 
-	 * @throws TemplateNotFoundException 
-	 */
-	public static Template getTemplate(String ftlLocation, Class<?> clazz) 
-			throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException{
-		Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
-		cfg.setClassForTemplateLoading(clazz, "");
+    /**
+     * æ„é€ freemarkeræ¨¡æ¿å¯¹è±¡
+     * @param ftlLocation æ¨¡æ¿æ–‡ä»¶è·¯å¾„
+     * @return
+     * @throws IOException
+     * @throws ParseException
+     * @throws MalformedTemplateNameException
+     * @throws TemplateNotFoundException
+     */
+    public static Template getTemplate(String ftlLocation, Class<?> clazz)
+            throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException{
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
+        cfg.setClassForTemplateLoading(clazz, "");
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         return cfg.getTemplate(ftlLocation);
-	}
-	
-	/**
-	 * Éú³É´úÂëÎÄ¼ş
-	 * @temp Ä£°å
-	 * @param m Ğ´ÈëÊı¾İ
-	 * @param fileName ÎÄ¼şÃû
-	 * @return
-	 * @throws IOException 
-	 * @throws TemplateException 
-	 */
-	public static File generateCodeFile(Template temp, Map<String, Object> m, String fileName, String fileDir) 
-			throws TemplateException, IOException{
-		File dir = new File(fileDir);
-		if(!dir.exists()) {
+    }
+
+    /**
+     * ç”Ÿæˆä»£ç æ–‡ä»¶
+     * @temp æ¨¡æ¿
+     * @param m å†™å…¥æ•°æ®
+     * @param fileName æ–‡ä»¶å
+     * @return
+     * @throws IOException
+     * @throws TemplateException
+     */
+    public static File generateCodeFile(Template temp, Map<String, Object> m, String fileName, String fileDir)
+            throws TemplateException, IOException{
+        File dir = new File(fileDir);
+        if(!dir.exists()) {
             dir.mkdirs();
         }
-		
-		File f = new File(dir, fileName);
+
+        File f = new File(dir, fileName);
         Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "UTF-8"));
         temp.process(m, out);
         out.flush();
         out.close();
         return f;
-	}
+    }
 }

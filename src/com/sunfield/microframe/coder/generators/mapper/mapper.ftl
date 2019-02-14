@@ -18,7 +18,7 @@ import ${providerPackage};
 public interface ${modelName}Mapper{
 
 	/**
-	 * ÁĞ±í²éÑ¯
+	 * åˆ—è¡¨æŸ¥è¯¢
 	 * @param obj
 	 * @return
 	 */
@@ -26,7 +26,7 @@ public interface ${modelName}Mapper{
 	public List<${modelName}> findList(${modelName} obj);
 
 	/**
-	 * ·ÖÒ³²éÑ¯
+	 * åˆ†é¡µæŸ¥è¯¢
 	 * @param obj
 	 * @return
 	 */
@@ -34,7 +34,7 @@ public interface ${modelName}Mapper{
 	public List<${modelName}> findPage(${modelName} obj);
 
 	/**
-	 * µ¥ĞĞ²éÑ¯
+	 * å•è¡ŒæŸ¥è¯¢
 	 * @param id
 	 * @return
 	 */
@@ -42,7 +42,7 @@ public interface ${modelName}Mapper{
 	public ${modelName} findOne(String id);
 
 	/**
-	 * ²åÈëµ¥ĞĞ
+	 * æ’å…¥å•è¡Œ
 	 * @param obj
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public interface ${modelName}Mapper{
 	public int insert(${modelName} obj);
 
 	/**
-	 * ¸üĞÂµ¥ĞĞ
+	 * æ›´æ–°å•è¡Œ
 	 * @param obj
 	 * @return
 	 */
@@ -58,13 +58,13 @@ public interface ${modelName}Mapper{
 	public int update(${modelName} obj);
 
 	/**
-	 * É¾³ıµ¥ĞĞ£¨Ò»°ãÎªÂß¼­É¾³ı£©
+	 * åˆ é™¤å•è¡Œï¼ˆä¸€èˆ¬ä¸ºé€»è¾‘åˆ é™¤ï¼‰
 	 * @param id
 	 * @return
 	 */
-	<#if logicDelete>
+<#if logicDelete>
 	@UpdateProvider(type=${providerName}.class, method="generateDeleteSql")
 	public int delete(String id);
-	</#if>
-	
+</#if>
+
 }

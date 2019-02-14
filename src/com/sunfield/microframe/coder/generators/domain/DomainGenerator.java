@@ -14,38 +14,39 @@ import freemarker.template.Template;
 
 public class DomainGenerator {
 
-	/**domainÄ£°åÎÄ¼ş**/
-	private final static String FTL_FILE = "domain.ftl";
-	
-	/**°üÃû**/
-	public final static String PACKAGE_NAME = "com.sunfield.microframe.domain";
-	
-	public static void run(String tableName, String modelName, List<TableColumns> list, String fileDir) throws Exception{
-		Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, DomainGenerator.class);
-		
-		/**Ğ´Èë´úÂëÄÚÈİ**/
-		Map<String, Object> m = new HashMap<String, Object>();
-		
-		/**Ğ´Èë°üÃû**/
-		m.put("packageName", PACKAGE_NAME);
-		
-		/**¼ì²é¸÷ÖÖÊôĞÔ¾ö¶¨ÒıÈëµÄ°ü**/
-		List<String> packageList = new ArrayList<String>();
-		if(TableUtils.hasTime(list)){
-			packageList.add("java.util.Date");
-		}
-		m.put("packages", packageList);
-		
-		/**ÉèÖÃ±í/ÊµÌåÃû³Æ**/
-		m.put("tableName", tableName);
-		m.put("modelName", modelName);
-		
-		/**ÉèÖÃÊµÌåÄÚÈİ**/
-		m.put("attrs", TableUtils.table2Model(list));
-		
-		/**ÉèÖÃÂß¼­É¾³ıÁĞ**/
-		m.put("logicDeleteColumnName", CodeRunner.LOGIC_DELETE_COLUMN);
-		
-		FreeMarkerUtils.generateCodeFile(temp, m, modelName + ".java", fileDir);
-	}
+    /**domainæ¨¡æ¿æ–‡ä»¶**/
+    private final static String FTL_FILE = "domain.ftl";
+
+    /**åŒ…å**/
+    public final static String PACKAGE_NAME = "com.sunfield.microframe.domain";
+
+    public static void run(String tableName, String modelName, List<TableColumns> list, String fileDir) throws Exception{
+        Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, DomainGenerator.class);
+
+        /**å†™å…¥ä»£ç å†…å®¹**/
+        Map<String, Object> m = new HashMap<String, Object>();
+
+        /**å†™å…¥åŒ…å**/
+        m.put("packageName", PACKAGE_NAME);
+
+        /**æ£€æŸ¥å„ç§å±æ€§å†³å®šå¼•å…¥çš„åŒ…**/
+        List<String> packageList = new ArrayList<String>();
+        if(TableUtils.hasTime(list)){
+            packageList.add("java.util.Date");
+        }
+        m.put("packages", packageList);
+
+        /**è®¾ç½®è¡¨/å®ä½“åç§°**/
+        m.put("tableName", tableName);
+        m.put("modelName", modelName);
+
+        /**è®¾ç½®å®ä½“å†…å®¹**/
+        m.put("attrs", TableUtils.table2Model(list));
+
+        /**è®¾ç½®é€»è¾‘åˆ é™¤åˆ—**/
+        m.put("logicDeleteColumnName", CodeRunner.LOGIC_DELETE_COLUMN);
+
+        FreeMarkerUtils.generateCodeFile(temp, m, modelName + ".java", fileDir);
+    }
 }
+

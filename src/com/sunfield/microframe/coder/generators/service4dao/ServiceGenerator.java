@@ -14,42 +14,42 @@ import freemarker.template.Template;
 
 public class ServiceGenerator {
 
-	/**serviceÄ£°åÎÄ¼ş**/
-	private final static String FTL_FILE = "service.ftl";
-	
-	/**°üÃû**/
-	public final static String PACKAGE_NAME = "com.sunfield.microframe.service";
-	
-	public static void run(String tableName, String modelName, String fileDir) throws Exception{
-		Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, ServiceGenerator.class);
-		
-		/**Ğ´Èë´úÂëÄÚÈİ**/
-		Map<String, Object> m = new HashMap<String, Object>();
-		
-		/**Ğ´Èë°üÃû**/
-		m.put("packageName", PACKAGE_NAME);
-		
-		/**ÉèÖÃ±í/ÊµÌåÃû³Æ**/
-		m.put("tableName", tableName);
-		m.put("modelName", modelName);
-		
-		/**Ğ´ÈëMapperÃû**/
-		String mapperName = modelName + "Mapper";
-		m.put("mapperName", mapperName);
-		
-		/**Ğ´Èëmodel°üÃû**/
-		m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
-		
-		/**Ğ´Èëmapper°üÃû**/
-		m.put("mapperPackage", MapperGenerator.PACKAGE_NAME + "." + mapperName);
-		
-		/**ÉèÖÃÂß¼­É¾³ı**/
-		if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
+    /**serviceæ¨¡æ¿æ–‡ä»¶**/
+    private final static String FTL_FILE = "service.ftl";
+
+    /**åŒ…å**/
+    public final static String PACKAGE_NAME = "com.sunfield.microframe.service";
+
+    public static void run(String tableName, String modelName, String fileDir) throws Exception{
+        Template temp = FreeMarkerUtils.getTemplate(FTL_FILE, ServiceGenerator.class);
+
+        /**å†™å…¥ä»£ç å†…å®¹**/
+        Map<String, Object> m = new HashMap<String, Object>();
+
+        /**å†™å…¥åŒ…å**/
+        m.put("packageName", PACKAGE_NAME);
+
+        /**è®¾ç½®è¡¨/å®ä½“åç§°**/
+        m.put("tableName", tableName);
+        m.put("modelName", modelName);
+
+        /**å†™å…¥Mapperå**/
+        String mapperName = modelName + "Mapper";
+        m.put("mapperName", mapperName);
+
+        /**å†™å…¥modelåŒ…å**/
+        m.put("modelPackage", DomainGenerator.PACKAGE_NAME + "." + modelName);
+
+        /**å†™å…¥mapperåŒ…å**/
+        m.put("mapperPackage", MapperGenerator.PACKAGE_NAME + "." + mapperName);
+
+        /**è®¾ç½®é€»è¾‘åˆ é™¤**/
+        if(StringUtils.isNotBlank(CodeRunner.LOGIC_DELETE_COLUMN)) {
             m.put("logicDelete", true);
         } else {
             m.put("logicDelete", false);
         }
-		
-		FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Service.java", fileDir);
-	}
+
+        FreeMarkerUtils.generateCodeFile(temp, m, modelName + "Service.java", fileDir);
+    }
 }
